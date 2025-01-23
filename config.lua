@@ -148,37 +148,78 @@ orgsConfig.List = {
 			["Coronel"] = { -- CARGO
 				prefix = "Coronel", -- PREFIX
                 leader = true, -- Para Não aparecer na tela de ( Invite / Promote )
-				tier = 6, -- Nivel do Cargo ( Para ter uma Ordem )
-				maxSets = 12,
+				tier = 15, -- Nivel do Cargo ( Para ter uma Ordem )
+				maxSets = 3,
 			},
 
 			["Tenente Coronel"] = { -- CARGO
 				prefix = "Tenente Coronel", -- PREFIX
-				tier = 5, -- Nivel do Cargo ( Para ter uma Ordem )
-				maxSets =11,
+				tier = 14, -- Nivel do Cargo ( Para ter uma Ordem )
+				maxSets = 5,
 			},
 
 			["Major"] = { -- CARGO
 				prefix = "Major", -- PREFIX
-				tier = 4, -- Nivel do Cargo ( Para ter uma Ordem )
-				maxSets = 10,
+				tier = 13, -- Nivel do Cargo ( Para ter uma Ordem )
+				maxSets = 7,
 			},
 
-			["Capitao"] = { -- CARGO
-				prefix = "Capitao", -- PREFIX
-				tier = 9, -- Nivel do Cargo ( Para ter uma Ordem )
+			["Comando Rocam"] = { -- CARGO
+				prefix = "Comando Rocam", -- PREFIX
+				tier = 12, -- Nivel do Cargo ( Para ter uma Ordem )
+				maxSets = 7,
 			},
 						
+			["Capitao"] = { -- CARGO
+				prefix = "Capitao", -- PREFIX
+				tier = 11, -- Nivel do Cargo ( Para ter uma Ordem )
+			},
+						
+			["Primeiro Tenente"] = { -- CARGO
+				prefix = "Primeiro Tenente", -- PREFIX
+				tier = 10, -- Nivel do Cargo ( Para ter uma Ordem )
+			},
+									
+			["Segundo Tenente"] = { -- CARGO
+				prefix = "Segundo Tenente", -- PREFIX
+				tier = 9, -- Nivel do Cargo ( Para ter uma Ordem )
+			},
+			
+			["Sub Tenente"] = { -- CARGO
+				prefix = "Sub Tenente", -- PREFIX
+				tier = 8, -- Nivel do Cargo ( Para ter uma Ordem )
+			},
+			
+			["Primeiro Sargento"] = { -- CARGO
+				prefix = "Primeiro Sargento", -- PREFIX
+				tier = 7, -- Nivel do Cargo ( Para ter uma Ordem )
+			},
+			
+			["Segundo Sargento"] = { -- CARGO
+				prefix = "Segundo Sargento", -- PREFIX
+				tier = 6, -- Nivel do Cargo ( Para ter uma Ordem )
+			},
+			
+			["Rocam"] = { -- CARGO
+				prefix = "Rocam", -- PREFIX
+				tier = 5, -- Nivel do Cargo ( Para ter uma Ordem )
+			},
+			
+			["Terceiro Sargento"] = { -- CARGO
+				prefix = "Terceiro Sargento", -- PREFIX
+				tier = 4, -- Nivel do Cargo ( Para ter uma Ordem )
+			},
+			
 			["Cabo"] = { -- CARGO
 				prefix = "Cabo", -- PREFIX
 				tier = 3, -- Nivel do Cargo ( Para ter uma Ordem )
 			},
-						
+			
 			["Soldado"] = { -- CARGO
 				prefix = "Soldado", -- PREFIX
 				tier = 2, -- Nivel do Cargo ( Para ter uma Ordem )
 			},
-									
+			
 			["Aluno"] = { -- CARGO
 				prefix = "Aluno", -- PREFIX
 				tier = 1, -- Nivel do Cargo ( Para ter uma Ordem )
@@ -269,26 +310,26 @@ orgsConfig.List = {
 			},
 		}
 	},
-	["PoliciaCot"] = {
-		config = {
-			maxMembers = 999, -- Maximo de Jogadores
-			tipo = "legal",
-		},
+	-- ["PoliciaCot"] = {
+	-- 	config = {
+	-- 		maxMembers = 999, -- Maximo de Jogadores
+	-- 		tipo = "legal",
+	-- 	},
 		
-		groups = {
-			["ComandoCot"] = { -- CARGO
-				prefix = "ComandoCot", -- PREFIX
-                leader = true, -- Para Não aparecer na tela de ( Invite / Promote )
-				tier = 2, -- Nivel do Cargo ( Para ter uma Ordem )
-				maxSets = 2,
-			},
+	-- 	groups = {
+	-- 		["ComandoCot"] = { -- CARGO
+	-- 			prefix = "ComandoCot", -- PREFIX
+    --             leader = true, -- Para Não aparecer na tela de ( Invite / Promote )
+	-- 			tier = 2, -- Nivel do Cargo ( Para ter uma Ordem )
+	-- 			maxSets = 2,
+	-- 		},
 
-			["Cot"] = { -- CARGO
-				prefix = "Cot", -- PREFIX
-				tier = 1, -- Nivel do Cargo ( Para ter uma Ordem )
-			},
-		}
-	},
+	-- 		["Cot"] = { -- CARGO
+	-- 			prefix = "Cot", -- PREFIX
+	-- 			tier = 1, -- Nivel do Cargo ( Para ter uma Ordem )
+	-- 		},
+	-- 	}
+	-- },
 	
 	["PoliciaCivil"] = {
 		config = {
@@ -393,6 +434,44 @@ orgsConfig.List = {
 		}
 	},
 
+	
+	["CatCafe"] = {
+		config = {
+			maxMembers = 999, -- Maximo de Jogadores
+			tipo = "legal",
+		},
+		
+		groups = {
+			["Lider [CATCAFE]"] = { -- CARGO
+				prefix = "Lider [CATCAFE]", -- PREFIX
+                leader = true, -- Para Não aparecer na tela de ( Invite / Promote )
+				tier = 5, -- Nivel do Cargo ( Para ter uma Ordem )
+				maxSets = 2,
+			},
+			
+			["Sub-Lider [CATCAFE]"] = { -- CARGO
+				prefix = "Sub-Lider [CATCAFE]", -- PREFIX
+				leader = true, -- Para Não aparecer na tela de ( Invite / Promote )
+				tier = 4, -- Nivel do Cargo ( Para ter uma Ordem )
+			},
+			
+			["Gerente [CATCAFE]"] = { -- CARGO
+				prefix = "Gerente [CATCAFE]", -- PREFIX
+				tier = 3, -- Nivel do Cargo ( Para ter uma Ordem )
+			},
+			
+			["Membro [CATCAFE]"] = { -- CARGO
+				prefix = "Membro [CATCAFE]", -- PREFIX
+				tier = 2, -- Nivel do Cargo ( Para ter uma Ordem )
+			},
+						
+			["Novato [CATCAFE]"] = { -- CARGO
+				prefix = "Novato [CATCAFE]", -- PREFIX
+				tier = 1, -- Nivel do Cargo ( Para ter uma Ordem )
+			},
+		}
+	},
+	
 	
 	["Mafia"] = {
 		config = {
