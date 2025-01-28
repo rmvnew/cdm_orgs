@@ -296,7 +296,7 @@ function src.demotePlayer(player_id, org)
                     local nsource = vRP.getUserSource(player_id)
 
                     if nsource then
-                        TriggerClientEvent('Notify', nsource, "SUCESSO", "Você foi demitido do cargo "..groupPrefix[1])
+                        -- TriggerClientEvent('Notify', nsource, "SUCESSO", "Você foi demitido do cargo "..groupPrefix[1])
                         vRP.removeUserGroup(player_id, nGroup)
                     end
 
@@ -392,7 +392,9 @@ function src.executeBank(data)
                 bankValue = iraFicar
 
                 -- Guardar nome ação valor
-                vRP.giveMoney(user_id, value)
+                -- vRP.giveMoney(user_id, value)
+                vRP.giveBankMoney(user_id, value)
+
                 bankHistory[os.time()] = {nome = nome, acao = "retirou", valor = value, user_id = user_id}
                 vRP.execute("dani_orgs/updateBanco", { org = myOrg, banco = bankValue, bancoHistorico = json.encode(bankHistory)})
                 local rows2 = vRP.query("dani_orgs/getOrg", { org = myOrg })
@@ -986,6 +988,10 @@ AddEventHandler("vRP:playerSpawn",function(user_id,source,first_spawn)
                 local groupPrefix = members[tostring(user_id)].groupPrefix
                 if orgsConfig.List[myOrg].groups[group].prefix ~= groupPrefix then
                     for k,v in pairs(orgsConfig.List[myOrg].groups) do
+
+                        print("Teste 1: ",orgsConfig.List[myOrg].groups[k].prefix)
+                        print("Teste 2: ",groupPrefix)
+
                         if orgsConfig.List[myOrg].groups[k].prefix == groupPrefix then
                             TriggerClientEvent("Notify", source, "IMPORTANTE", "Parabens você foi promovido/rebaixado para  "..groupPrefix, 10)
                             vRP.addUserGroup(user_id, k)
