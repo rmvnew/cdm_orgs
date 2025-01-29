@@ -407,31 +407,52 @@ function src.executeBank(data)
             end
         elseif action == "deposit" then
             if hasPermissionDeposit(user_id, myOrg) then
-                if vRP.tryPayment(user_id, parseInt(value)) then
-                    
-                    if value <= 0 then
-                        value = 0
-                    end
-                    
-                    bankValue = bankValue + value
-                    
-                    -- Guardar nome ação valor
-                    bankHistory[os.time()] = {nome = nome, acao = "depositou", valor = value, user_id = user_id}
-                    vRP.execute("dani_orgs/updateBanco", { org = myOrg, banco = bankValue, bancoHistorico = json.encode(bankHistory)})
-                    local rows2 = vRP.query("dani_orgs/getOrg", { org = myOrg })
-                    
-                    local bankHistory2 = rows2[1].bancoHistorico
-                    
-                    local info = {bankValue = vRP.format(bankValue), Historic = bankHistory2}
-                    
-                    return info
-                else
-                    local rows2 = vRP.query("dani_orgs/getOrg", { org = myOrg })
+                
 
-                    local bankHistory2 = rows2[1].bancoHistorico
-                    TriggerClientEvent("Notify", source, "NEGADO", "Você não tem esse dinheiro na mão.",6)
-                    return {bankValue = vRP.format(bankValue)   , Historic = bankHistory2}
+                local moneyInHand = vRP.getMoney(user_id)
+                local moneyInBank = vRP.getBankMoney(user_id)
+                
+                local totalToDeposit = parseInt(value)
+                
+                if totalToDeposit <= 0 then
+                    TriggerClientEvent("Notify", source, "NEGADO", "Valor inválido para depósito.", 6)
+                    return { bankValue = vRP.format(bankValue), Historic = rows[1].bancoHistorico }
                 end
+                
+                -- Verifica se o jogador tem dinheiro suficiente
+                if (moneyInHand + moneyInBank) < totalToDeposit then
+                    TriggerClientEvent("Notify", source, "NEGADO", "Você não tem dinheiro suficiente.", 6)
+                    return { bankValue = vRP.format(bankValue), Historic = rows[1].bancoHistorico }
+                end
+                
+                -- Prioriza o dinheiro na mão
+                local fromHand = math.min(moneyInHand, totalToDeposit) -- Usa o menor valor entre o dinheiro na mão e o total
+                local fromBank = totalToDeposit - fromHand -- O restante vem do banco (se necessário)
+                
+               
+                -- Retira o dinheiro da mão
+                if fromHand > 0 then
+                    vRP.tryPayment(user_id, fromHand)
+                end
+                
+                -- Retira o dinheiro do banco
+                if fromBank > 0 then
+                    vRP.setBankMoney(user_id, moneyInBank - fromBank) -- Atualiza o dinheiro do banco manualmente
+                end
+                
+                -- Atualiza o banco da organização
+                bankValue = bankValue + totalToDeposit
+                
+                -- Guarda no histórico
+                bankHistory[os.time()] = { nome = nome, acao = "depositou", valor = totalToDeposit, user_id = user_id }
+                vRP.execute("dani_orgs/updateBanco", { org = myOrg, banco = bankValue, bancoHistorico = json.encode(bankHistory) })
+                
+                -- Retorna as informações atualizadas
+                local rows2 = vRP.query("dani_orgs/getOrg", { org = myOrg })
+                local bankHistory2 = rows2[1].bancoHistorico
+                local info = { bankValue = vRP.format(bankValue), Historic = bankHistory2 }
+                
+                return info
             end
         end
     end
